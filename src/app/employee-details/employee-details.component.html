@@ -1,0 +1,75 @@
+<div class="panel panel-primary" *ngIf="EmployeeDetails">
+  <div class="panel-heading" style="font-size:large">
+      {{pageTitle}}
+  </div>
+
+  <div class="panel panel-default">
+      <div class="panel-heading">Info</div>
+      <div class="panel-body">
+         <div class="row">
+            <div class="col-md-3">First Name:</div>
+            <div class="col-md-6">{{EmployeeDetails.firstName}}</div>
+         </div> 
+         <div class="row">
+            <div class="col-md-3">Last Name:</div>
+            <div class="col-md-6">{{EmployeeDetails.lastName}}</div>
+         </div> 
+      </div>
+ </div>
+
+ <div class="panel panel-default">
+    <div class="panel-heading">Cost ($)</div>
+    <div class="panel-body">
+       <div class="row">
+          <div class="col-md-3">Employee Cost:</div>
+          <div class="col-md-6">{{EmployeeDetails.employeePremium|currency:"USD":true}}</div>
+       </div> 
+       <div class="row">
+          <div class="col-md-3">Dependents Cost:</div>
+          <div class="col-md-6">{{EmployeeDetails.dependentsPremium|currency:"USD":true}}</div>
+       </div> 
+       <div class="row" *ngIf='EmployeeDetails.nameDiscountFlag'>
+          <div class="col-md-3">Discount</div>
+          <div class="col-md-6"><span class="discount">Name Discount Applied</span></div>
+      </div>
+       <div class="row">
+          <div class="col-md-3">PayCheck:</div>
+          <div class="col-md-6">{{EmployeeDetails.payCheckAfterDeductions|currency:"USD":true}}</div>
+       </div> 
+    </div>
+</div>
+
+<div class="panel panel-default" >
+    <div class="panel-heading">Dependents</div>
+    <div class="panel-body">
+       <div class="row">
+          <div class="table-responsive" >
+              <table class="table" *ngIf='EmployeeDetails && EmployeeDetails.dependents.length'>
+                <thead>
+                    <tr>
+                        <th>
+                          First Name
+                        </th>
+                        <th>
+                            Last Name
+                          </th>                       
+                      </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let dependents of EmployeeDetails.dependents'>
+                   <td>{{dependents.firstName}}</td>
+                   <td>{{dependents.lastName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+       </div> 
+
+</div>
+
+  <div class="panel-footer">
+      <a class="btn btn-default" (click)="onBack()" style="width:80px">
+          <i class="glyphicon glyphicon-chevron-left"></i> Back
+      </a>
+  </div>
+</div>

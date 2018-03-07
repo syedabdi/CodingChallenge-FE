@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Employee List
+  </div>
+</div>
+<div class="form-inline">
+    <input [(ngModel)]='listFilter' placeholder="Filter by...." type="text" class="form-control">
+</div>
+<div class="table-responsive table-container" >
+  <table class="table" *ngIf='EmployeeDetails && EmployeeDetails.length'>
+    <thead>
+        <tr>
+            <th>
+              First Name
+            </th>
+            <th>
+                Last Name
+              </th>
+            <th>
+              Employee Cost
+            </th>
+            <th>
+              Dependents Cost
+            </th>
+            <th>
+              Action
+            </th>
+          </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let employee of FilterEmployee'>
+       <td>{{employee.firstName}}</td>
+       <td>{{employee.lastName}}</td>
+       <td>{{employee.employeePremium | currency:'USD':true:'1.2-2'}}</td>
+       <td>{{employee.dependentsPremium | currency:'USD':true:'1.2-2'}}</td>
+       <td><a [routerLink]="['/employee', employee.id]">
+        Detail</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

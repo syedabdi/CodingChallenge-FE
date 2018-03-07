@@ -1,0 +1,12 @@
+.panel{
+    margin-bottom:  0px;
+}
+
+div.panel-heading {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.discount{
+    color:red;
+}
